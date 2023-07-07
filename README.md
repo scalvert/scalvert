@@ -5,4 +5,4 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=scalvert&layout=compact&theme=dark)](https://github.com/scalvert/github-readme-stats)
 
-[![scalverts's github stats](https://github-readme-stats.vercel.app/api?username=scalvert&theme=dark)](https://github.com/scalvert/github-readme-stats)
+[![scalverts's github stats](https://github-readme-stats.vercel.app/api?username=scalvert&theme=dark&show_icons=true)](https://github.com/scalvert/github-readme-stats)
