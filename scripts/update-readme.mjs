@@ -91,21 +91,18 @@ async function mergedPullRequests() {
   return { all: all.total_count, external: external.total_count };
 }
 
-async function recentReleases() {
+// Only featured projects count, so a repo removed from projects.json cannot
+// come back through the releases list.
+async function recentReleases(projects) {
   const { count, maxAgeDays } = config.releases;
   const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;
-  const repos = await github(`users/${config.user}/repos?type=owner&sort=pushed&per_page=100`);
-  const candidates = repos.filter(
-    (repo) =>
-      !repo.fork && !repo.archived && !repo.private && Date.parse(repo.pushed_at) >= cutoff,
-  );
 
   const latest = [];
-  for (const repo of candidates) {
-    const releases = await github(`repos/${repo.full_name}/releases?per_page=10`);
+  for (const project of projects) {
+    const releases = await github(`repos/${project.repo}/releases?per_page=10`);
     const release = releases.find((r) => !r.draft && !r.prerelease && r.published_at);
     if (release && Date.parse(release.published_at) >= cutoff) {
-      latest.push({ repo, release });
+      latest.push({ project, release });
     }
   }
 
@@ -173,8 +170,8 @@ function renderReleases(releases) {
   });
   return releases
     .map(
-      ({ repo, release }) =>
-        `- [${repo.name} ${release.tag_name}](${release.html_url}) on ` +
+      ({ project, release }) =>
+        `- [${repoLabel(project)} ${release.tag_name}](${release.html_url}) on ` +
         `${date.format(new Date(release.published_at))}`,
     )
     .join('\n');
@@ -200,7 +197,7 @@ async function main() {
   const totalDownloads = maintained.reduce((sum, name) => sum + (downloads.get(name) ?? 0), 0);
 
   const pulls = await mergedPullRequests();
-  const releases = await recentReleases();
+  const releases = await recentReleases(projects);
 
   const before = await readFile(readmePath, 'utf8');
   let after = replaceBlock(

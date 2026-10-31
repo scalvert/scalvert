@@ -7,12 +7,16 @@
   },
   "sections": [
     {
-      "id": "now",
+      "id": "agents",
       "projects": [
         {
           "repo": "scalvert/docusaurus-plugin-mcp-server",
           "npm": "docusaurus-plugin-mcp-server",
           "summary": "Serves a Docusaurus site as an MCP server, so Claude, Cursor and other agents can search and read your docs."
+        },
+        {
+          "repo": "gleanwork/mcp-server-tester",
+          "summary": "Playwright-based tests and evals for MCP servers, with an LLM judge. I'm its main author at Glean."
         },
         {
           "repo": "scalvert/agent-review",
@@ -21,34 +25,12 @@
         {
           "repo": "scalvert/skills",
           "summary": "Agent Skills for Claude Code and Codex: self-review, pull request review, working through review comments, and plain writing."
-        },
-        {
-          "repo": "gleanwork/mcp-server-tester",
-          "summary": "Playwright-based tests and evals for MCP servers, with an LLM judge. I'm its main author at Glean."
-        },
-        {
-          "repo": "scalvert/oncue",
-          "summary": "Narrated explainer videos from code. Each visual lines up with the word it belongs to, and terminal and browser captures come from real runs."
-        },
-        {
-          "repo": "scalvert/edd",
-          "summary": "Eval-driven development for prompts. It runs test cases against an LLM judge, compares them to a baseline, and can fix regressions through Claude Code."
-        },
-        {
-          "repo": "scalvert/signals",
-          "summary": "Ranks what most needs a maintainer's attention across their repos, from a scheduled GitHub Action with no server."
         }
       ]
     },
     {
       "id": "tools",
       "projects": [
-        {
-          "repo": "stefanpenner/node-fixturify-project",
-          "label": "fixturify-project",
-          "npm": "fixturify-project",
-          "summary": "Builds real npm projects on disk for tests. I co-maintain it."
-        },
         {
           "repo": "scalvert/bintastic",
           "npm": "bintastic",
@@ -60,54 +42,15 @@
           "summary": "Keeps code samples in Markdown in sync with real source files that you can lint and test."
         },
         {
+          "repo": "scalvert/docusaurus-plugin-search-glean",
+          "npm": "docusaurus-plugin-search-glean",
+          "summary": "Adds Glean search and chat to a Docusaurus site."
+        },
+        {
           "repo": "release-it-plugins/workspaces",
+          "label": "@release-it-plugins/workspaces",
           "npm": "@release-it-plugins/workspaces",
           "summary": "A release-it plugin that publishes every package in a workspace."
-        },
-        {
-          "repo": "scalvert/jest-to-vitest",
-          "summary": "A jscodeshift codemod that moves Jest tests to Vitest."
-        },
-        {
-          "repo": "scalvert/python-fixturify-project",
-          "summary": "A Python port of fixturify-project."
-        }
-      ]
-    },
-    {
-      "id": "history",
-      "projects": [
-        {
-          "repo": "checkupjs/checkup",
-          "summary": "A health checkup for JavaScript projects, with output in SARIF. I wrote most of it."
-        },
-        {
-          "repo": "lint-todo/utils",
-          "label": "lint-todo",
-          "npm": "@lint-todo/utils",
-          "summary": "Turns existing lint violations into todos with due dates, so a large codebase can adopt a new rule without fixing everything first."
-        },
-        {
-          "repo": "ember-template-lint/ember-template-lint",
-          "npm": "ember-template-lint",
-          "summary": "The linter for Ember and Handlebars templates. I was a maintainer and added its todo support."
-        },
-        {
-          "repo": "ember-lifeline/ember-lifeline",
-          "summary": "Manages the lifecycle of async work in Ember objects so tests do not leak."
-        },
-        {
-          "repo": "ember-a11y/ember-a11y-testing",
-          "summary": "Runs axe accessibility audits inside Ember tests."
-        },
-        {
-          "repo": "emberjs/ember-test-waiters",
-          "npm": "ember-test-waiters",
-          "summary": "Lets Ember's test helpers wait for async operations to finish."
-        },
-        {
-          "repo": "microsoft/sarif-js-sdk",
-          "summary": "JavaScript tools for SARIF, the standard format for static analysis results."
         }
       ]
     }

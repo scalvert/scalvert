@@ -31,7 +31,7 @@ const palettes = {
 };
 
 const font = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace";
-const focus = ['developer platforms', 'MCP', 'agent tooling', 'testing', 'linting', 'codemods'];
+const focus = ['developer platforms', 'MCP', 'agent tooling', 'testing', 'docs tooling'];
 
 function banner(c) {
   const separator = `<tspan fill="${c.muted}"> · </tspan>`;
