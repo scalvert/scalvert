@@ -25,8 +25,10 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function getJson(url, headers = {}, attempt = 1) {
   const response = await fetch(url, { headers });
-  if ((response.status === 429 || response.status >= 500) && attempt < 5) {
-    await sleep(1000 * 2 ** attempt);
+  if ((response.status === 429 || response.status >= 500) && attempt < 6) {
+    // Prefer the server's Retry-After (in seconds) over our own backoff.
+    const retryAfter = Number(response.headers.get('retry-after'));
+    await sleep(retryAfter > 0 ? retryAfter * 1000 : 1000 * 2 ** attempt);
     return getJson(url, headers, attempt + 1);
   }
   if (!response.ok) {
@@ -91,26 +93,6 @@ async function mergedPullRequests() {
   return { all: all.total_count, external: external.total_count };
 }
 
-// Only featured projects count, so a repo removed from projects.json cannot
-// come back through the releases list.
-async function recentReleases(projects) {
-  const { count, maxAgeDays } = config.releases;
-  const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;
-
-  const latest = [];
-  for (const project of projects) {
-    const releases = await github(`repos/${project.repo}/releases?per_page=10`);
-    const release = releases.find((r) => !r.draft && !r.prerelease && r.published_at);
-    if (release && Date.parse(release.published_at) >= cutoff) {
-      latest.push({ project, release });
-    }
-  }
-
-  return latest
-    .sort((a, b) => Date.parse(b.release.published_at) - Date.parse(a.release.published_at))
-    .slice(0, count);
-}
-
 function compact(n) {
   if (n >= 1e6) return `${(n / 1e6).toFixed(1).replace(/\.0$/, '')}M`;
   if (n >= 1e4) return `${Math.round(n / 1e3)}k`;
@@ -160,23 +142,6 @@ function renderStats({ totalDownloads, packageCount, pulls }) {
   );
 }
 
-function renderReleases(releases) {
-  if (releases.length === 0) return '_No releases in the last year._';
-  const date = new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  });
-  return releases
-    .map(
-      ({ project, release }) =>
-        `- [${repoLabel(project)} ${release.tag_name}](${release.html_url}) on ` +
-        `${date.format(new Date(release.published_at))}`,
-    )
-    .join('\n');
-}
-
 function replaceBlock(text, name, content) {
   const pattern = new RegExp(`(<!-- BEGIN:${name} -->)[\\s\\S]*?(<!-- END:${name} -->)`);
   if (!pattern.test(text)) throw new Error(`README.md has no ${name} block`);
@@ -197,7 +162,6 @@ async function main() {
   const totalDownloads = maintained.reduce((sum, name) => sum + (downloads.get(name) ?? 0), 0);
 
   const pulls = await mergedPullRequests();
-  const releases = await recentReleases(projects);
 
   const before = await readFile(readmePath, 'utf8');
   let after = replaceBlock(
@@ -208,7 +172,6 @@ async function main() {
   for (const section of config.sections) {
     after = replaceBlock(after, section.id, renderTable(section.projects, repoData, downloads));
   }
-  after = replaceBlock(after, 'releases', renderReleases(releases));
 
   if (process.argv.includes('--check')) {
     if (after !== before) {
@@ -225,8 +188,7 @@ async function main() {
   }
   await writeFile(readmePath, after);
   console.log(
-    `Updated README.md: ${projects.length} projects, ${maintained.length} packages, ` +
-      `${releases.length} releases.`,
+    `Updated README.md: ${projects.length} projects, ${maintained.length} packages.`,
   );
 }
 

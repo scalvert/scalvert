@@ -3,7 +3,7 @@
   <img alt="Steve Calvert, software engineer at Glean" src="assets/banner-light.svg" width="100%">
 </picture>
 
-I build developer tools: test harnesses, docs tooling, release tooling, and lately the pieces that let AI agents work with code and docs. I mostly write TypeScript on Node.js.
+I build developer tools: test harnesses, docs tooling, and lately the pieces that let AI agents work with code and docs. I mostly write TypeScript on Node.js.
 
 I'm a software engineer at [Glean](https://www.glean.com). I work on the developer platform: the [Glean APIs](https://developers.glean.com), MCP, and the tools people use to build on Glean. Before that I worked on web infrastructure at LinkedIn.
 
@@ -26,9 +26,9 @@ Most of my recent work is about AI agents: docs they can read, a review process 
 | [skills](https://github.com/scalvert/skills) | Agent Skills for Claude Code and Codex: self-review, pull request review, working through review comments, and plain writing. |  |  |
 <!-- END:agents -->
 
-## Testing, docs and release tools
+## Testing and docs tools
 
-Tools for testing CLIs against real files, keeping docs in step with the code, and publishing releases.
+Tools for testing CLIs against real files and keeping docs in step with the code.
 
 <!-- BEGIN:tools -->
 | Project | What it does | Stars | npm/month |
@@ -36,18 +36,6 @@ Tools for testing CLIs against real files, keeping docs in step with the code, a
 | [bintastic](https://github.com/scalvert/bintastic) | Runs your CLI as a subprocess against real files and captures the output, so CLI tests read like unit tests. | 4 | 918 |
 | [markdown-code](https://github.com/scalvert/markdown-code) | Keeps code samples in Markdown in sync with real source files that you can lint and test. | 1 | 2.8k |
 | [docusaurus-plugin-search-glean](https://github.com/scalvert/docusaurus-plugin-search-glean) | Adds Glean search and chat to a Docusaurus site. | 1 | 6.6k |
-| [@release-it-plugins/workspaces](https://github.com/release-it-plugins/workspaces) | A release-it plugin that publishes every package in a workspace. | 71 | 33k |
 <!-- END:tools -->
 
-## Recent releases
-
-<!-- BEGIN:releases -->
-- [docusaurus-plugin-mcp-server v2.7.0](https://github.com/scalvert/docusaurus-plugin-mcp-server/releases/tag/v2.7.0) on Oct 30, 2026
-- [skills v0.5.0](https://github.com/scalvert/skills/releases/tag/v0.5.0) on Oct 21, 2026
-- [agent-review v0.3.0](https://github.com/scalvert/agent-review/releases/tag/v0.3.0) on Oct 21, 2026
-- [bintastic v4.2.1](https://github.com/scalvert/bintastic/releases/tag/v4.2.1) on Aug 30, 2026
-- [markdown-code v1.2.0](https://github.com/scalvert/markdown-code/releases/tag/v1.2.0) on Jul 21, 2026
-- [@release-it-plugins/workspaces v6.0.0](https://github.com/release-it-plugins/workspaces/releases/tag/v6.0.0) on Jun 19, 2026
-<!-- END:releases -->
-
-<sub>This page updates itself every week. A [GitHub Action](.github/workflows/update-readme.yml) runs [`scripts/update-readme.mjs`](scripts/update-readme.mjs), which reads [`projects.json`](projects.json) and fills in stars, downloads and releases from GitHub and npm.</sub>
+<sub>This page updates itself every week. A [GitHub Action](.github/workflows/update-readme.yml) runs [`scripts/update-readme.mjs`](scripts/update-readme.mjs), which reads [`projects.json`](projects.json) and fills in stars and downloads from GitHub and npm.</sub>

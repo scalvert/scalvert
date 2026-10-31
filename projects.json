@@ -1,10 +1,6 @@
 {
   "user": "scalvert",
   "npmMaintainer": "scalvert",
-  "releases": {
-    "count": 6,
-    "maxAgeDays": 365
-  },
   "sections": [
     {
       "id": "agents",
@@ -45,12 +41,6 @@
           "repo": "scalvert/docusaurus-plugin-search-glean",
           "npm": "docusaurus-plugin-search-glean",
           "summary": "Adds Glean search and chat to a Docusaurus site."
-        },
-        {
-          "repo": "release-it-plugins/workspaces",
-          "label": "@release-it-plugins/workspaces",
-          "npm": "@release-it-plugins/workspaces",
-          "summary": "A release-it plugin that publishes every package in a workspace."
         }
       ]
     }
