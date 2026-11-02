@@ -10,7 +10,7 @@ I'm a software engineer at [Glean](https://www.glean.com). I work on the develop
 [LinkedIn](https://www.linkedin.com/in/stevecalvert/) · [npm](https://www.npmjs.com/~scalvert) · [Glean developer docs](https://developers.glean.com)
 
 <!-- BEGIN:stats -->
-The 68 packages I maintain on [npm](https://www.npmjs.com/~scalvert) get about 3.2M downloads a month. I've had 1,441 pull requests merged on GitHub, 1,132 of them in other people's projects.
+The 68 packages I maintain on [npm](https://www.npmjs.com/~scalvert) get about 3M downloads a month. I've had 1,447 pull requests merged on GitHub, 1,132 of them in other people's projects.
 <!-- END:stats -->
 
 ## AI agents and MCP
@@ -33,9 +33,9 @@ Tools for testing CLIs against real files and keeping docs in step with the code
 <!-- BEGIN:tools -->
 | Project | What it does | Stars | npm/month |
 | --- | --- | --: | --: |
-| [bintastic](https://github.com/scalvert/bintastic) | Runs your CLI as a subprocess against real files and captures the output, so CLI tests read like unit tests. | 4 | 918 |
-| [markdown-code](https://github.com/scalvert/markdown-code) | Keeps code samples in Markdown in sync with real source files that you can lint and test. | 1 | 2.8k |
-| [docusaurus-plugin-search-glean](https://github.com/scalvert/docusaurus-plugin-search-glean) | Adds Glean search and chat to a Docusaurus site. | 1 | 6.6k |
+| [bintastic](https://github.com/scalvert/bintastic) | Runs your CLI as a subprocess against real files and captures the output, so CLI tests read like unit tests. | 4 | 746 |
+| [markdown-code](https://github.com/scalvert/markdown-code) | Keeps code samples in Markdown in sync with real source files that you can lint and test. | 1 | 2.5k |
+| [docusaurus-plugin-search-glean](https://github.com/scalvert/docusaurus-plugin-search-glean) | Adds Glean search and chat to a Docusaurus site. | 1 | 6k |
 <!-- END:tools -->
 
 <sub>This page updates itself every week. A [GitHub Action](.github/workflows/update-readme.yml) runs [`scripts/update-readme.mjs`](scripts/update-readme.mjs), which reads [`projects.json`](projects.json) and fills in stars and downloads from GitHub and npm.</sub>
